@@ -47,8 +47,13 @@ module.exports = {
     });
   },
   create: function (req, res) {
-    const { title, userId } = req.body;
-    const documents = new DocumentsModel({ title, userId });
+    const { title, userId, language = 'en' } = req.body;
+    const languageTag = {
+      'en': `<english>${title}</english>`,
+      'de': `<german>${title}</german>`,
+    };
+
+    const documents = new DocumentsModel({ title: languageTag[language], userId });
 
     documents.save(function (err, document) {
       if (err) {

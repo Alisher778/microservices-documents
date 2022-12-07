@@ -1,6 +1,6 @@
-var express = require("express");
-var router = express.Router();
-var documentsController = require("../../controllers/documents");
+const express = require("express");
+const router = express.Router();
+const documentsController = require("../../controllers/documents");
 
 router
   .get("/", documentsController.list)
