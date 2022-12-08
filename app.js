@@ -3,6 +3,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const cors = require('cors');
 const logger = require("./utils/logger");
 const config = require("./configs");
 
@@ -11,6 +12,13 @@ const documentsRouter = require("./routes/v1/documents");
 
 const app = express();
 const { APP_PORT, DATABASE_URL } = config;
+
+const corsOptions = {
+  credentials: true,
+  origin: true,
+}
+
+app.use('*', cors(corsOptions));
 
 app.use(morgan("dev"));
 app.use(express.json());
